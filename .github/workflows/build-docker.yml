@@ -52,7 +52,7 @@ jobs:
             --build-arg COLMAP_GIT_COMMIT="$GITHUB_SHA" \
             --build-arg CUDA_ARCHITECTURES="$cuda_archs"
           if [[ "${{ env.IS_RELEASE }}" == "true" ]]; then
-            docker tag trendmend/colmap:$dockertag colmap/colmap:latest
+            docker tag trendmend/colmap:$dockertag trendmend/colmap:latest
             docker push trendmend/colmap:$dockertag
             docker push trendmend/colmap:latest
           fi
