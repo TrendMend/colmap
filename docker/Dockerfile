@@ -11,7 +11,7 @@ ARG CUDA_ARCHITECTURES=native
 ENV QT_XCB_GL_INTEGRATION=xcb_egl
 
 # Prevent stop building ubuntu at time zone selection.
-ENV DEBIAN_FRONTEND=noninteractive
+ARG DEBIAN_FRONTEND=noninteractive
 
 # Prepare and empty machine for building.
 RUN apt-get update && \
