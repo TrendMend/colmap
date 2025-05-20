@@ -11,7 +11,9 @@ on:
     types: [ published, edited ]
 
 env:
-  IS_RELEASE: ${{ github.event_name == 'release' || startsWith(github.ref, 'refs/tags') }}
+  IS_RELEASE: True
+  
+# ${{ github.event_name == 'release' || startsWith(github.ref, 'refs/tags') }}
 
 jobs:
   build:
@@ -46,11 +48,11 @@ jobs:
           fi
           docker build . \
             --file docker/Dockerfile \
-            --tag colmap/colmap:$dockertag \
+            --tag trendmend/colmap:$dockertag \
             --build-arg COLMAP_GIT_COMMIT="$GITHUB_SHA" \
             --build-arg CUDA_ARCHITECTURES="$cuda_archs"
           if [[ "${{ env.IS_RELEASE }}" == "true" ]]; then
-            docker tag colmap/colmap:$dockertag colmap/colmap:latest
-            docker push colmap/colmap:$dockertag
-            docker push colmap/colmap:latest
+            docker tag trendmend/colmap:$dockertag colmap/colmap:latest
+            docker push trendmend/colmap:$dockertag
+            docker push trendmend/colmap:latest
           fi
